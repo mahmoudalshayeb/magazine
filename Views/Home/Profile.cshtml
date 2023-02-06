@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Users1>
+@{
+    var userId = ViewBag.UserId;
+    ViewData["name"] = ViewBag.name;
+   
+}
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    
+
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f3f2ec
+        }
+    </style>
+    
+</head>
+<body>
+
+@foreach(var item in Model){
+
+    if(item.Id==userId){
+          
+            <div class="container">
+                <div class="row flex-lg-nowrap">
+                    
+
+                    <div class="col">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="e-profile">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-auto mb-3">
+                                                   
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="tab-content pt-3">
+                                                <div class="tab-pane active">
+                                                    <form method="POST" asp-action="Profile" enctype="multipart/form-data" class="form">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="row">
+
+                                                                    <div class="col">
+
+                                                                         <div class="form-group">
+                                                                            <label class="labels" for="Username"> Username</label>
+                                                                            <input type="text" id="Username" name="Username" value="@item.Username" class="form-control" disabled />
+
+                                                                        </div>
+                                                                    </div>
+                                                                        <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label class="labels" for="Firstname"> Firstname</label>
+                                                                            <input type="text" id="Firstname" name="Firstname" value="@item.Firstname" class="form-control" required />
+                                                                           
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label class="labels" for="Lastname"> Lastname</label>
+                                                                            <input type="text" id="Lastname" name="Lastname" value="@item.Lastname" class="form-control" required />
+                                                                            
+                                                                        </div>
+                                                                    </div>
+                                                                      <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label class="labels" for="Password"> Password</label>
+                                                                            <input type="password" id="Password" name="Password" value="@item.Password" class="form-control" required />
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                             <label class="labels" for="Email"> Email</label>
+                                                                            <input type="text" id="Email" name="Email" value="@item.Email" class="form-control" disabled />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col mb-3">
+                                                                        <div class="form-group">
+                                                                            <label class="labels" for="Phonenumber"> Phonenumber</label>
+                                                                            <input type="text" id="Phonenumber" name="Phonenumber" value="@item.Phonenumber" class="form-control" required/>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
+                                                        <div class="row">
+                                                            <div class="col d-flex justify-content-end">
+
+                                                                <input type="submit" value="Save" class="btn btn-primary profile-button" id="Profile" />
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-3 mb-3">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="px-xl-3">
+                                            <a asp-action="Logout" class="nav-link"> Logout</a>
+                                            <a asp-action="MyOrders" class="nav-link"> My orders</a>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+    }
+}
+</body>
+</html>

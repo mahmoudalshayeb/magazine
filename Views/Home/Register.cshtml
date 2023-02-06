@@ -1,0 +1,143 @@
+﻿@model magazine.Models.Users1
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+    <link rel="Stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" />
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/RegisterAssest/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/RegisterAssest/css/style.css">
+    <style>
+        body {
+            background-color: lightgray;
+     }
+        .signup{
+            margin-top:100px;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+        }
+
+            .form-control::-ms-expand {
+                background-color: transparent;
+                border: 0
+            }
+
+            .form-control:focus {
+                color: #495057;
+                background-color: #fff;
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+            }
+</style>
+</head>
+<body>
+   
+    <div >
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form" asp-action="Register" enctype="multipart/form-data">
+
+                            <div class="form-group">
+
+                                <input asp-for="Firstname" class="form-control" placeholder="First Name" />
+                                <span asp-validation-for="Firstname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Lastname" class="form-control" placeholder="Last Name" />
+                                <span asp-validation-for="Lastname" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                              
+                                <input name="username" class="form-control" placeholder="User name" id="username" onchange="UserCheck()" />
+                                <small id="Status"></small>
+                               
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                <input asp-for="Password " class="form-control" placeholder="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control" placeholder="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Phonenumber " class="form-control" placeholder="Phone number" />
+                                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                            </div>
+
+
+
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Create" disabled />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+   
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+    <script>
+        function UserCheck(){
+            $("#Status").html("Checking...");
+            $.post("@Url.Action("check","Home")",
+                {
+                    userdata: $("#username").val()
+                },
+                function(data){
+                    if(data==0)
+                    {
+                        $("#signup").prop('disabled', false)
+                        $("#Status").html("Available !")
+                        $("#username").css("border-color","Green")
+                    }else{
+                        $("#Status").html("user name is taken !")
+                        $("#username").css("border-color","Red")
+                    }
+                }
+                )
+        }
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@model magazine.Models.Users1
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = null;
+
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+    <link rel="Stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.10/themes/redmond/jquery-ui.css" />
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/RegisterAssest/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/RegisterAssest/css/style.css">
+    <style>
+        body {
+            background-color: lightgray;
+        }
+        .signup{
+            margin-top:100px;
+        }
+</style>
+       
+</head>
+<body>
+   
+    <div>
+
+        <!-- Sign up form -->
+        <section class="signup ">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form" asp-action="Register" enctype="multipart/form-data">
+
+                            <div class="form-group">
+
+                                <input asp-for="Firstname" class="form-control" placeholder="First Name" />
+                                <span asp-validation-for="Firstname" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Lastname" class="form-control" placeholder="Last Name" />
+                                <span asp-validation-for="Lastname" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Username" class="form-control" placeholder="User name" id="username" onchange="UserCheck()" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <p id="Status" ></p>
+
+                            <div class="form-group">
+                                <input asp-for="Password " class="form-control" placeholder="Password" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                           
+                            <div class="form-group">
+                                <input asp-for="Email" class="form-control" placeholder="Email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input asp-for="Phonenumber " class="form-control" placeholder="Phone number" />
+                                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                            </div>
+                           
+
+                            
+                            <div class="row">
+                            <div class="form-group form-button  col-md-2">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Create" disabled />
+                          
+                            </div>
+                                <div class="form-group col-md-2">
+                                
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Login"> I have an acount </a>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
+    <script>
+        function UserCheck(){
+            $("#Status").html("Checking...");
+            $.post("@Url.Action("check","Register")",
+                {
+                    userdata: $("#username").val()
+                },
+                function(data){
+                    if(data==0){
+                        $("#signup").prop('disabled', false)
+                        $("#Status").html("Available !")
+                        $("#username").css("border-color","Green")
+                    }else{
+                        
+                       
+                        $("#Status").html("user name is taken !")
+                        $("#username").css("border-color","Red")
+                    }
+                }
+                )
+        }
+
+    </script>
+
+</body>
+</html>

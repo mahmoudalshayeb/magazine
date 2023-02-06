@@ -1,0 +1,78 @@
+﻿@model magazine.Models.Element
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Element</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Backgroudcolor" class="control-label"></label>
+                <input asp-for="Backgroudcolor" class="form-control" />
+                <span asp-validation-for="Backgroudcolor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Aboutustest" class="control-label"></label>
+                <input asp-for="Aboutustest" class="form-control" />
+                <span asp-validation-for="Aboutustest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Footertext1" class="control-label"></label>
+                <input asp-for="Footertext1" class="form-control" />
+                <span asp-validation-for="Footertext1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Footertext2" class="control-label"></label>
+                <input asp-for="Footertext2" class="form-control" />
+                <span asp-validation-for="Footertext2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Footertext3" class="control-label"></label>
+                <input asp-for="Footertext3" class="form-control" />
+                <span asp-validation-for="Footertext3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logoimg" class="control-label"></label>
+                <input asp-for="Logoimg" class="form-control" />
+                <span asp-validation-for="Logoimg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sliderpath1" class="control-label"></label>
+                <input asp-for="Sliderpath1" class="form-control" />
+                <span asp-validation-for="Sliderpath1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sliderpath2" class="control-label"></label>
+                <input asp-for="Sliderpath2" class="form-control" />
+                <span asp-validation-for="Sliderpath2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sliderpath3" class="control-label"></label>
+                <input asp-for="Sliderpath3" class="form-control" />
+                <span asp-validation-for="Sliderpath3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phonenumber" class="control-label"></label>
+                <input asp-for="Phonenumber" class="form-control" />
+                <span asp-validation-for="Phonenumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,281 @@
+﻿@model Tuple<IEnumerable<Product1>,IEnumerable<Category>>;
+@{
+    Layout = "_HomeLayOut";
+	var userid = ViewBag.Userid;
+}
+<html>
+	<head>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		body{
+			background-color: #f3f2ec
+		}
+	</style>
+	<script src="https://kit.fontawesome.com/f4f6f22610.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+	
+<section id="popular-books" class="bookshelf">
+	<div class="container">
+			<div class="row d-flex align-center">
+				<div class="col-md-12">
+		<form asp-action="Shop" method="get">
+
+			<input type="text" name="SearchString" />
+			<input type="submit" value="Search" class="btn-small btn-primary" />
+	</form>
+	</div>
+</div>
+		<div class="row">
+			<div class="col-md-12">
+
+					
+
+				<ul class="tabs">
+						<li data-tab-target="#all-genre" class="active tab">All Genre</li>
+						@foreach(var item in Model.Item2)
+						{
+					<li data-tab-target="#@item.Name" class="tab">@item.Name</li>
+						}
+						
+					
+				
+				</ul>
+
+				<div class="tab-content">
+					<div id="all-genre" data-tab-content class="active">
+						<div class="row">
+
+                @foreach(var item in Model.Item1)
+                            {
+							<div class="col-md-3">
+								<figure class="product-style">
+										<img src=@Url.Content("~/Images/" + item.Imgpath)
+										 asp-append-version="true" class="product-item" />
+										 @if(userid!=null){
+												<a asp-action="ADD" asp-route-id="@item.Id" class="align-center"><i class="fa-solid fa-cart-plus"></i></a>
+										}
+											else
+											{
+												<a asp-area="" asp-controller="Home" asp-action="Login" class="align-center"> <i class="fa-solid fa-cart-plus"></i> </a>
+											}
+											<figcaption>
+										
+										<h3>@item.Name</h3>
+										<div class="item-price">$ @item.Price</div>
+										
+										
+									</figcaption>
+								</figure>
+							</div>
+
+							
+							}
+
+						</div>
+
+					</div>
+					
+					<div id="Food" data-tab-content class="active">
+						<div class="row">
+
+                @foreach(var item in Model.Item1.Where(x=>x.Cat.Name=="Food"))
+                            {
+							<div class="col-md-3">
+								<figure class="product-style">
+										<img src=@Url.Content("~/Images/" + item.Imgpath)
+										 asp-append-version="true" class="product-item" />
+										 @if(userid!=null){
+												<a asp-action="ADD" asp-route-id="@item.Id" class="align-center"><i class="fa-solid fa-cart-plus"></i></a>
+										}
+											else
+											{
+												<a asp-area="" asp-controller="Home" asp-action="Login" class="align-center"> <i class="fa-solid fa-cart-plus"></i> </a>
+											}
+											<figcaption>
+										
+										<h3>@item.Name</h3>
+										<div class="item-price">$ @item.Price</div>
+										
+										
+									</figcaption>
+								</figure>
+							</div>
+
+							
+							}
+
+						</div>
+
+					</div>
+
+						<div id="sports" data-tab-content class="active">
+						<div class="row">
+
+								@foreach (var item in Model.Item1.Where(x => x.Cat.Name == "sports"))
+                            {
+							<div class="col-md-3">
+								<figure class="product-style">
+										<img src=@Url.Content("~/Images/" + item.Imgpath)
+										 asp-append-version="true" class="product-item" />
+										 @if(userid!=null){
+												<a asp-action="ADD" asp-route-id="@item.Id" class="align-center"><i class="fa-solid fa-cart-plus"></i></a>
+										}
+											else
+											{
+												<a asp-area="" asp-controller="Home" asp-action="Login" class="align-center"> <i class="fa-solid fa-cart-plus"></i> </a>
+											}
+											<figcaption>
+										
+										<h3>@item.Name</h3>
+										<div class="item-price">$ @item.Price</div>
+										
+										
+									</figcaption>
+								</figure>
+							</div>
+
+							
+							}
+
+						</div>
+
+					</div>
+
+						<div id="fashion" data-tab-content class="active">
+									<div class="row">
+
+										@foreach (var item in Model.Item1.Where(x => x.Cat.Name == "fashion"))
+										{
+											<div class="col-md-3">
+												<figure class="product-style">
+													<img src=@Url.Content("~/Images/" + item.Imgpath)
+													 asp-append-version="true" class="product-item" />
+													@if (userid != null)
+													{
+														<a asp-action="ADD" asp-route-id="@item.Id" class="align-center"><i class="fa-solid fa-cart-plus"></i></a>
+													}
+													else
+													{
+														<a asp-area="" asp-controller="Home" asp-action="Login" class="align-center"> <i class="fa-solid fa-cart-plus"></i> </a>
+													}
+													<figcaption>
+
+														<h3>@item.Name</h3>
+														<div class="item-price">$ @item.Price</div>
+
+
+													</figcaption>
+												</figure>
+											</div>
+
+
+										}
+
+									</div>
+
+								</div>
+
+								
+							
+								<div id="Anime" data-tab-content class="active">
+									<div class="row">
+
+								@foreach (var item in Model.Item1.Where(x => x.Cat.Name == "Anime"))
+										{
+											<div class="col-md-3">
+												<figure class="product-style">
+													<img src=@Url.Content("~/Images/" + item.Imgpath)
+													 asp-append-version="true" class="product-item" />
+													@if (userid != null)
+													{
+														<a asp-action="ADD" asp-route-id="@item.Id" class="align-center"><i class="fa-solid fa-cart-plus"></i></a>
+													}
+													else
+													{
+														<a asp-area="" asp-controller="Home" asp-action="Login" class="align-center"> <i class="fa-solid fa-cart-plus"></i> </a>
+													}
+													<figcaption>
+
+														<h3>@item.Name</h3>
+														<div class="item-price">$ @item.Price</div>
+
+
+													</figcaption>
+												</figure>
+											</div>
+
+
+										}
+
+									</div>
+
+								</div>
+					
+					@*<div id="business" data-tab-content>
+						<div class="row">
+							<div class="col-md-3">
+								<figure class="product-style">
+									<img src="~/HomeAssest/images/tab-item2.jpg" alt="Books" class="product-item">
+									<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+									<figcaption>
+										<h3>Peaceful Enlightment</h3>
+										<p>Marmik Lama</p>
+										<div class="item-price">$ 40.00</div>
+									</figcaption>
+								</figure>
+							</div>
+
+							<div class="col-md-3">
+								<figure class="product-style">
+									<img src="~/HomeAssest/images/tab-item4.jpg" alt="Books" class="product-item">
+									<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+									<figcaption>
+										<h3>Great travel at desert</h3>
+										<p>Sanchit Howdy</p>
+										<div class="item-price">$ 40.00</div>
+									</figcaption>
+								</figure>
+							</div>
+
+							<div class="col-md-3">
+								<figure class="product-style">
+									<img src="~/HomeAssest/images/tab-item6.jpg" alt="Books" class="product-item">
+									<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+									<figcaption>
+										<h3>Life among the pirates</h3>
+										<p>Armor Ramsey</p>
+										<div class="item-price">$ 40.00</div>
+									</figcaption>
+								</figure>
+							</div>
+
+							<div class="col-md-3">
+								<figure class="product-style">
+									<img src="~/HomeAssest/images/tab-item8.jpg" alt="Books" class="product-item">
+									<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+									<figcaption>
+										<h3>Simple way of piece life</h3>
+										<p>Armor Ramsey</p>
+										<div class="item-price">$ 40.00</div>
+									</figcaption>
+								</figure>
+							</div>
+
+						</div>
+					</div>*@
+
+					
+
+				</div>
+
+			</div><!--inner-tabs-->
+
+		</div>
+	</div>
+</section>
+
+
+</body>
+</html>

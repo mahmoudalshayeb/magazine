@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Users1>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+*@
+@{
+    ViewData["Title"] = "Users";
+    Layout = "_Dash";
+
+}
+
+
+
+<html>
+<head>
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+</head>
+<body>
+
+
+    <br>
+    <br>
+    <table class="table table-striped mt-5" id="Datatable">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User name</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name </th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone number</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                
+                        <tr>
+                            <th scope="row">@item.Id</th>
+                            <td>@item.Username</td>
+                            <td>@item.Firstname</td>
+                            <td>@item.Lastname</td>
+                            <td>@item.Email</td>
+                            <td>@item.Phonenumber</td>
+                        </tr>
+                       
+               
+            }
+
+           
+        </tbody>
+
+    </table>
+    <p>User count: @Model.Where(x=>x.Roleid==2).Count()</p>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js" defer></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#Datatable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copyHtml5',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+
+
+
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

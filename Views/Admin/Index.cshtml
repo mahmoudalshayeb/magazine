@@ -1,0 +1,168 @@
+﻿@model Tuple<IEnumerable<Orders1>, IEnumerable<Testimonial>, IEnumerable<Users1>, IEnumerable<Product1>, IEnumerable<Category>>
+@{
+    var username = ViewBag.Username;
+    var userid = ViewBag.Userid;
+    Layout = "_Dash";
+    decimal totalpayment = 0;
+}
+
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            
+            <!-- Total Revenue -->
+    
+            
+            <!--/ Total Revenue -->
+
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 order-1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/dash/assets/img/icons/unicons/chart-success.png"
+                                             alt="chart success"
+                                             class="rounded" />
+                                    </div>
+
+                                </div>
+                                <span class="fw-semibold d-block mb-1">Profit</span>
+                                @foreach (var item in Model.Item1)
+                                {
+                                    totalpayment += Convert.ToDecimal(item.Quantity * item.Pro.Price);
+                                }
+                                <h3 class="card-title mb-2">$@totalpayment</h3>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                 <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/dash/assets/img/icons/unicons/chart-success.png"
+                                             alt="chart success"
+                                             class="rounded" />
+                                    </div>
+
+                                </div>
+                                <span class="fw-semibold d-block mb-1">Users</span>
+                               
+                                <h3 class="card-title mb-2">@Model.Item3.Where(x=>x.Roleid==2).Count()</h3>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                 
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 order-1">
+            <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/dash/assets/img/icons/unicons/chart-success.png"
+                                             alt="chart success"
+                                             class="rounded" />
+                                    </div>
+
+                                </div>
+                                    <span class="fw-semibold d-block mb-1">published mag</span>
+                               
+                                <h3 class="card-title mb-2">@Model.Item4.Where(x=>x.Ispublished==null).Count()</h3>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                     <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/dash/assets/img/icons/unicons/chart-success.png"
+                                             alt="chart success"
+                                             class="rounded" />
+                                    </div>
+
+                                </div>
+                                    <span class="fw-semibold d-block mb-1">unpublished mag</span>
+                               
+                                <h3 class="card-title mb-2">@Model.Item4.Where(x=>x.Ispublished==1).Count()</h3>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+                </div>
+            <!-- Order Statistics -->
+            <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                        <div class="card-title mb-0">
+                            <h5 class="m-0 me-2">Order Statistics</h5>
+                            <small class="text-muted">@totalpayment Total Sales</small>
+                        </div>
+                      
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                                <h2 class="mb-2">@Model.Item1.Count()</h2>
+                                <span>Total Orders</span>
+                            </div>
+                           
+                        </div>
+                        <ul class="p-0 m-0">
+                            @foreach(var item in Model.Item5){
+                            <li class="d-flex mb-4 pb-1">
+                                <div class="pr-3">
+                                    
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">@item.Name</h6>
+                                        
+                                    </div>
+                                    <div class="user-progress">
+                                        <small class="fw-semibold">@Model.Item1.Where(x=>x.Pro.Catid==item.Id).Count()</small>
+                                    </div>
+                                </div>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         
+           
+           
+        </div>
+    </div>
+   
+
+
+
+    <div class="content-backdrop fade"></div>
+</div>
+

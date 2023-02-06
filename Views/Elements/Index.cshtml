@@ -1,0 +1,89 @@
+﻿@model IEnumerable<magazine.Models.Element>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Backgroudcolor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aboutustest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Footertext1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Footertext2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Footertext3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logoimg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sliderpath1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sliderpath2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sliderpath3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phonenumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Backgroudcolor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aboutustest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Footertext1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Footertext2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Footertext3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logoimg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sliderpath1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sliderpath2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sliderpath3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phonenumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
